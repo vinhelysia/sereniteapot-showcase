@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Serenitea ShowCase Gallery</title>
-  <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    var pathSegmentsToKeep = 1;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serenitea ShowCase Gallery</title>
+    <meta name="description" content="Serenitea ShowCase Gallery" />
+    <meta name="author" content="Vinhelysia" />
+    <link rel="icon" type="image/webp" href="./icon/System_Serenitea_Pot.webp" />
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
 
-    var l = window.location;
-    l.replace(
-      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-      l.pathname.split('/').slice(1 + pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-      l.hash
-    );
-  </script>
-</head>
-<body>
-</body>
+    <meta property="og:title" content="Serenitea ShowCase Gallery" />
+    <meta property="og:description" content="Serenitea ShowCase Gallery" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://vinhelysia.github.io/sereniteapot-showcase/icon/System_Serenitea_Pot.webp" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@vinhelysia" />
+    <meta name="twitter:image" content="https://vinhelysia.github.io/sereniteapot-showcase/icon/System_Serenitea_Pot.webp" />
+
+  <script type="module" crossorigin src="/sereniteapot-showcase/assets/index-CD085k1e.js"></script>
+  <link rel="stylesheet" crossorigin href="/sereniteapot-showcase/assets/index-DPu2_FTx.css">
+
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
