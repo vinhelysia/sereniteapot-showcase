@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import FilterControls from '../components/FilterControls';
 import Gallery from '../components/Gallery';
 import Modal from '../components/Modal';
-
 import Footer from '../components/Footer';
 import Toast from '../components/Toast';
 import { showcaseData } from '../data/showcaseData';
@@ -30,7 +29,7 @@ const Index = () => {
     contextType: '',
     server: ''
   });
-  
+
   const [filteredDesigns, setFilteredDesigns] = useState<Design[]>(showcaseData);
   const [modalImages, setModalImages] = useState<string[]>([]);
   const [modalCurrentIndex, setModalCurrentIndex] = useState(0);
@@ -39,7 +38,6 @@ const Index = () => {
   const [toastType, setToastType] = useState<'success' | 'error' | 'info'>('success');
   const [isToastVisible, setIsToastVisible] = useState(false);
 
-  // Filter designs based on current filters
   const filterDesigns = useCallback(() => {
     let filtered = showcaseData;
 
@@ -47,14 +45,12 @@ const Index = () => {
       filtered = filtered.filter(design => design.designType === filters.designType);
     }
 
-    if (filters.contextType) {
+    if (filters.contextType && (filters.designType === 'ex' || filters.designType === 'in')) {
       filtered = filtered.filter(design => {
         if (filters.designType === 'ex') {
           return design.realmType === filters.contextType;
-        } else if (filters.designType === 'in') {
-          return design.mansionType === filters.contextType;
         }
-        return true;
+        return design.mansionType === filters.contextType;
       });
     }
 
@@ -106,24 +102,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      
-      <main className="max-w-6xl mx-auto px-6 py-12">
+
+      <main className="flex-1 max-w-6xl w-full mx-auto px-6 py-10">
         <FilterControls
           filters={filters}
           onFilterChange={handleFilterChange}
           onReset={handleFilterReset}
         />
-        
+
         <Gallery
           designs={filteredDesigns}
           onImageClick={handleImageClick}
           onToast={showToast}
         />
       </main>
-
-
 
       <Footer />
 

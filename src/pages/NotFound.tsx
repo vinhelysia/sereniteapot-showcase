@@ -5,19 +5,23 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error("404:", location.pathname);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
+    <div className="min-h-screen flex items-center justify-center bg-background px-6">
+      <div className="text-center max-w-sm">
+        <p className="text-sm text-muted-foreground mb-3">
+          404
+        </p>
+        <h1 className="font-display text-4xl text-foreground mb-3">
+          Page not found
+        </h1>
+        <p className="text-sm text-muted-foreground mb-6">
+          That path isn’t in the archive.
+        </p>
+        <a href="/" className="btn-jade">
+          Back to builds
         </a>
       </div>
     </div>

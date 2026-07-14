@@ -15,72 +15,90 @@ const FilterControls: React.FC<FilterControlsProps> = ({ filters, onFilterChange
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const servers = ['All', 'Asia', 'Europe', 'America'];
-  
+
+  const isWorld = filters.designType === 'world';
+
   const getContextOptions = () => {
     if (filters.designType === 'ex') {
       return [{ value: '', label: 'All Realms' }, ...Object.entries(realmTypes).map(([key, value]) => ({ value: key, label: value }))];
     } else if (filters.designType === 'in') {
       return [{ value: '', label: 'All Mansions' }, ...Object.entries(mansionTypes).map(([key, value]) => ({ value: key, label: value }))];
+    } else if (isWorld) {
+      return [{ value: '', label: '—' }];
     }
     return [{ value: '', label: 'All' }];
   };
 
+  const activeCount = [
+    filters.designType,
+    !isWorld && filters.contextType ? filters.contextType : '',
+    filters.server
+  ].filter(Boolean).length;
+
   return (
-    <div className="bg-card rounded-lg shadow-card p-6 mb-8">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-semibold text-foreground">Filters</h3>
+    <section className="border border-border bg-card mb-10" aria-label="Filters">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-border">
+        <div className="flex items-center gap-3">
+          <h2 className="text-sm font-medium text-foreground">
+            Filters
+          </h2>
+          {activeCount > 0 && (
+            <span className="text-xs text-muted-foreground font-mono">
+              {activeCount} active
+            </span>
+          )}
+        </div>
         <button
+          type="button"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="btn-glass text-sm px-4 py-2"
+          className="btn-ghost text-xs py-1.5 px-3"
         >
-          {isCollapsed ? 'Show' : 'Hide'} Filters
+          {isCollapsed ? 'Show' : 'Hide'}
         </button>
       </div>
-      
+
       {!isCollapsed && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {/* Design Type Filter */}
+        <div className="filters-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-5">
           <div>
-            <label className="block text-sm font-medium text-muted-foreground mb-2">
-              Design Type
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">
+              Design type
             </label>
             <select
               value={filters.designType}
               onChange={(e) => onFilterChange({ ...filters, designType: e.target.value, contextType: '' })}
-              className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary transition-smooth"
+              className="field"
             >
-              <option value="">All Types</option>
+              <option value="">All types</option>
               {Object.entries(designTypes).map(([key, value]) => (
                 <option key={key} value={key}>{value as string}</option>
               ))}
             </select>
           </div>
 
-          {/* Context Filter (Realm/Mansion) */}
           <div>
-            <label className="block text-sm font-medium text-muted-foreground mb-2">
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">
               {filters.designType === 'ex' ? 'Realm' : filters.designType === 'in' ? 'Mansion' : 'Context'}
             </label>
             <select
-              value={filters.contextType}
+              value={isWorld ? '' : filters.contextType}
               onChange={(e) => onFilterChange({ ...filters, contextType: e.target.value })}
-              className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary transition-smooth"
+              className="field disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isWorld}
             >
               {getContextOptions().map(({ value, label }) => (
-                <option key={value} value={value}>{label as string}</option>
+                <option key={value || label} value={value}>{label as string}</option>
               ))}
             </select>
           </div>
 
-          {/* Server Filter */}
           <div>
-            <label className="block text-sm font-medium text-muted-foreground mb-2">
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">
               Server
             </label>
             <select
               value={filters.server}
               onChange={(e) => onFilterChange({ ...filters, server: e.target.value })}
-              className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:ring-2 focus:ring-primary transition-smooth"
+              className="field"
             >
               {servers.map((server) => (
                 <option key={server} value={server === 'All' ? '' : server}>{server}</option>
@@ -88,18 +106,14 @@ const FilterControls: React.FC<FilterControlsProps> = ({ filters, onFilterChange
             </select>
           </div>
 
-          {/* Reset Button */}
           <div className="flex items-end">
-            <button
-              onClick={onReset}
-              className="btn-accent w-full"
-            >
-              Reset Filters
+            <button type="button" onClick={onReset} className="btn-ghost w-full">
+              Reset
             </button>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

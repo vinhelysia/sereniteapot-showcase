@@ -2,25 +2,42 @@
 
 export const designTypes = {
   ex: 'Exterior',
-  in: 'Interior'
+  in: 'Interior',
+  world: 'World'
 };
 
+// Short codes → official English realm layout names
+// Refs: https://genshin-impact.fandom.com/wiki/Realm_Layout
+//       https://genshin-impact.fandom.com/wiki/Tletl_Ilhuicatl
+//       https://genshin-impact.fandom.com/wiki/Shadowflit_Archipelago
 export const realmTypes = {
+  // Original (1.5) — also keyed by common short codes used in data
+  mond: 'Cool Isle',
+  liyue: 'Emerald Peak',
+  liyuefloat: 'Floating Abode',
   floating: 'Floating Abode',
   emerald: 'Emerald Peak',
   mountain: 'Cool Isle',
-  fontaine: 'Fontaine',
-  mond: 'Mondstadt',
-  sumeru: 'Sumeru',
-  liyue: 'Liyue',
-  ina: 'Inazuma'
+  // Regional
+  ina: 'Silken Courtyard',
+  sumeru: 'Sublime Spicewood',
+  fontaine: 'Swirling Isles',
+  natlan: 'Tletl Ilhuicatl',
+  // Nod-Krai (newest)
+  nodkrai: 'Shadowflit Archipelago',
+  shadowflit: 'Shadowflit Archipelago'
 };
 
 export const mansionTypes = {
-  teapot: 'Serenitea Pot Spirit',
-  estate: 'Silken Courtyard',
-  manor: 'Jade Chamber',
-  sumeru: 'Sumeru Mansion'
+  fontaine: 'Fontaine Villa: Illusory Annex',
+  mond: 'Mondstadt Mansion: Windward Manor',
+  liyue: 'Liyue Estate: Exquisite Mansion',
+  sumeru: 'Sumeru Mansion: Meditative Retreat',
+  ina: 'Inazuman Walled House: Refined Estate',
+  natlan: 'Natlan Dwelling: "Lofty Tower"',
+  // Nod-Krai (newest)
+  nodkrai: 'Kerplunk-a-tron Windmill Base',
+  shadowflit: 'Kerplunk-a-tron Windmill Base'
 };
 
 export const showcaseData = [
@@ -304,6 +321,116 @@ export const showcaseData = [
       "images/g15/2.webp",
       "images/g15/3.webp",
       "images/g15/4.webp"
+    ]
+  },
+  {
+    id: 16,
+    title: "Sakura Island",
+    designType: "ex",
+    realmType: "ina",
+    mansionType: null,
+    replicaIds: [
+      { part: "Part 1", id: "91041622596" },
+      { part: "Part 2", id: "99631557188" },
+      { part: "Part 3", id: "95336589892" }
+    ],
+    server: "Asia",
+    owner: {
+      name: "Paimon Bot",
+      url: "https://www.youtube.com/@tenshibot1"
+    },
+    images: [
+      "images/g16/1.webp",
+      "images/g16/2.webp",
+      "images/g16/3.webp",
+      "images/g16/4.webp",
+      "images/g16/5.webp"
+    ]
+  },
+  {
+    id: 17,
+    title: "Sky Mansion",
+    designType: "ex",
+    realmType: "mond",
+    mansionType: null,
+    replicaIds: [
+      { part: "Part 1", id: "48134240828" },
+      { part: "Part 2", id: "43839273532" },
+      { part: "Part 3", id: "39544306236" }
+    ],
+    server: "Asia",
+    owner: {
+      name: "Paimon Bot",
+      url: "https://www.youtube.com/@tenshibot1"
+    },
+    images: [
+      "images/g17/1.webp",
+      "images/g17/2.webp",
+      "images/g17/3.webp"
+    ]
+  },
+  {
+    id: 18,
+    title: "Green Miniature Garden",
+    designType: "ex",
+    realmType: "ina",
+    mansionType: null,
+    replicaIds: [
+      { part: "Part 1", id: "9480825069" },
+      { part: "Part 2", id: "5185857773" }
+    ],
+    server: "Asia",
+    owner: {
+      name: "Paimon Bot",
+      url: "https://www.youtube.com/@tenshibot1"
+    },
+    images: [
+      "images/g18/1.webp",
+      "images/g18/2.webp",
+      "images/g18/3.webp",
+      "images/g18/4.webp",
+      "images/g18/5.webp",
+      "images/g18/6.webp"
+    ]
+  },
+  {
+    id: 19,
+    title: "Christmas Hotel",
+    designType: "ex",
+    realmType: "mond",
+    mansionType: null,
+    replicaIds: [
+      { part: "Part 1", id: "30950063723" },
+      { part: "Part 2", id: "39539998315" },
+      { part: "Part 3", id: "35245031019" }
+    ],
+    server: "Asia",
+    owner: {
+      name: "Paimon Bot",
+      url: "https://www.youtube.com/@tenshibot1"
+    },
+    images: [
+      "images/g19/1.webp",
+      "images/g19/2.webp",
+      "images/g19/3.webp",
+      "images/g19/4.webp",
+      "images/g19/5.webp"
+    ]
+  },
+  {
+    id: 20,
+    title: "Wonderland House",
+    designType: "world",
+    realmType: null,
+    mansionType: null,
+    replicaId: "7804961796",
+    server: "Asia",
+    owner: {
+      name: "Unknown",
+      url: "#"
+    },
+    images: [
+      "placeholder.svg"
     ]
   }
 ];

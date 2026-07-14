@@ -5,6 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // GitHub Pages project site: https://vinhelysia.github.io/sereniteapot-showcase/
+  base: mode === "development" ? "/" : "/sereniteapot-showcase/",
   server: {
     host: "::",
     port: 8080,

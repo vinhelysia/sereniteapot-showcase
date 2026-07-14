@@ -26,28 +26,36 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ designs, onImageClick, onToast }) => {
   if (designs.length === 0) {
     return (
-      <div className="text-center py-16">
-        <div className="bg-card rounded-lg shadow-card p-12 max-w-md mx-auto">
-          <div className="text-6xl mb-4 opacity-50">🏠</div>
-          <h3 className="text-2xl font-semibold text-foreground mb-2">No designs found</h3>
-          <p className="text-muted-foreground">
-            Try adjusting your filters to see more designs.
-          </p>
-        </div>
+      <div className="border border-dashed border-border bg-card px-8 py-16 text-center">
+        <p className="font-display text-2xl text-foreground mb-2">No builds match</p>
+        <p className="text-sm text-muted-foreground">
+          Clear a filter or pick another realm / mansion.
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {designs.map((design) => (
-        <GalleryItem
-          key={design.id}
-          design={design}
-          onImageClick={onImageClick}
-          onToast={onToast}
-        />
-      ))}
+    <div>
+      <div className="flex items-baseline justify-between mb-5">
+        <p className="text-sm text-muted-foreground">
+          Collection
+        </p>
+        <p className="font-mono text-xs text-muted-foreground">
+          {designs.length} {designs.length === 1 ? 'build' : 'builds'}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {designs.map((design) => (
+          <GalleryItem
+            key={design.id}
+            design={design}
+            onImageClick={onImageClick}
+            onToast={onToast}
+          />
+        ))}
+      </div>
     </div>
   );
 };
